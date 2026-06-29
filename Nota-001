@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Nota 001 — Michel Miranda</title>
+    
+    <meta name="description" content="Una nota personal sobre el arte de quedarse, la curiosidad y la búsqueda de propósito.">
+    <meta name="author" content="Michel Miranda">
+
+    <meta property="og:title" content="Nota 001 — Michel Miranda">
+    <meta property="og:description" content="Una nota íntima extraída directamente del diario personal.">
+    
+    <meta name="theme-color" content="#F7F5F2" id="theme-color-meta">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='12' fill='%236F8B5E'/></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #F7F5F2;
+            --text-color: #1D1D1F;
+            --accent-color: #6F8B5E;
+            --muted-color: #8A8A8A;
+            --line-color: rgba(29, 29, 31, 0.08);
+            --progress-bg: rgba(111, 139, 94, 0.1);
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-color: #E5E5EA;
+                --accent-color: #8CAF75;
+                --muted-color: #8E8E93;
+                --line-color: rgba(229, 229, 234, 0.1);
+                --progress-bg: rgba(140, 175, 117, 0.15);
+            }
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-sans);
+            font-size: 17px;
+            line-height: 1.8;
+            letter-spacing: -0.011em;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.8s ease, color 0.8s ease;
+            padding: 0 max(20px, env(safe-area-inset-right)) 0 max(20px, env(safe-area-inset-left));
+        }
+
+        .progress-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--progress-bg); z-index: 9999;
+        }
+        .progress-bar { height: 100%; width: 0%; background: var(--accent-color); transition: width 0.1s ease-out; }
+        .container { max-width: 620px; margin: 0 auto; position: relative; }
+
+        .hero {
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: flex-start;
+            position: relative; padding-bottom: 8vh;
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: clamp(32px, 6vw, 46px);
+            font-weight: 400; font-style: italic; line-height: 1.25;
+            animation: initialFadeUp 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+        }
+
+        .hero-meta {
+            margin-top: 40px; font-size: 13px; letter-spacing: 0.05em;
+            text-transform: uppercase; color: var(--muted-color); font-weight: 400;
+            animation: initialFadeIn 2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+        }
+
+        .hero-meta span { margin-right: 15px; position: relative; }
+        .hero-meta span:not(:last-child)::after { content: "·"; position: absolute; right: -10px; }
+
+        .scroll-indicator {
+            position: absolute; bottom: 6vh; left: 0; font-size: 13px;
+            color: var(--muted-color); letter-spacing: 0.02em; text-decoration: none;
+            animation: initialFadeIn 2s cubic-bezier(0.16, 1, 0.3, 1) 1.2s both;
+            transition: color 0.3s ease;
+        }
+        .scroll-indicator:hover { color: var(--accent-color); }
+
+        .journal-body { padding-bottom: 10vh; }
+        .paragraph-group { margin: 14vh 0; }
+        p { margin-bottom: 1.8em; font-weight: 300; opacity: 0.9; }
+        p strong { font-family: var(--font-serif); font-size: 22px; font-weight: 400; display: block; margin-top: 2.5em; font-style: italic; }
+
+        .editorial-phrase { min-height: 80vh; display: flex; align-items: center; justify-content: center; margin: 10vh 0; padding: 40px 0; }
+        .phrase-text { font-family: var(--font-serif); font-size: clamp(38px, 7vw, 56px); line-height: 1.2; font-weight: 400; color: var(--accent-color); text-align: left; width: 100%; font-style: italic; }
+
+        .divider { height: 1px; background-color: var(--line-color); width: 100%; margin-top: 15vh; margin-bottom: 8vh; border: none; }
+        .footer-note { font-weight: 300; margin-bottom: 2.5em; }
+        .footer-note p { margin-bottom: 0.6em; }
+        .action-zone { padding-bottom: 15vh; }
+
+        .btn-instagram {
+            display: inline-flex; align-items: center; font-family: var(--font-sans);
+            font-size: 14px; font-weight: 400; color: var(--text-color); text-decoration: none;
+            padding: 12px 24px; border: 1px solid var(--line-color); border-radius: 24px;
+            background-color: transparent; transition: all 0.5s ease;
+        }
+        .btn-instagram:hover { background-color: var(--text-color); color: var(--bg-color); transform: translateY(-2px); }
+
+        .reveal {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @keyframes initialFadeUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes initialFadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            body { font-size: 16px; }
+            .paragraph-group { margin: 10vh 0; }
+            .editorial-phrase { min-height: 60vh; }
+        }
+    </style>
+    <noscript><style>.reveal { opacity: 1; transform: translateY(0); }</style></noscript>
+</head>
+<body>
+
+    <div class="progress-container"><div class="progress-bar" id="readingProgress"></div></div>
+
+    <div class="container">
+        <section class="hero">
+            <h1 class="hero-title">Una nota que necesitaba escribir.</h1>
+            <div class="hero-meta">
+                <span>Nota 001</span><span>Domingo</span><span>Lectura: 2 min</span>
+            </div>
+            <a href="#content" class="scroll-indicator">↓ sigue leyendo</a>
+        </section>
+
+        <main class="journal-body" id="content">
+            <div class="paragraph-group reveal">
+                <p>Si estás leyendo esto, probablemente te pasa lo mismo que a mí.</p>
+                <p>Empiezas algo con una energía increíble.</p>
+                <p>Aprendes.</p>
+                <p>Te obsesionas.</p>
+                <p>Empiezas a hacerlo bien.</p>
+                <p>Y justo cuando todo comienza a tener sentido...</p>
+                <p>aparece una idea nueva.</p>
+            </div>
+
+            <section class="editorial-phrase reveal"><blockquote class="phrase-text">"Siempre estaba empezando otra vez."</blockquote></section>
+
+            <div class="paragraph-group reveal">
+                <p>La nueva idea parece mejor.</p>
+                <p>Más emocionante.</p>
+                <p>Con más potencial.</p>
+                <p>Entonces vuelves a empezar.</p>
+                <p>Y el ciclo se repite.</p>
+                <p>Durante mucho tiempo pensé que mi problema era que nunca encontraba la idea correcta.</p>
+                <p>Hoy creo que estaba completamente equivocado.</p>
+            </div>
+
+            <section class="editorial-phrase reveal"><blockquote class="phrase-text">"No me faltaba talento."</blockquote></section>
+
+            <div class="paragraph-group reveal">
+                <p>Mi problema era otro.</p>
+                <p>Confundía emoción con propósito.</p>
+                <p>La emoción dura unos días.</p>
+                <p>El propósito aparece cuando sigues trabajando incluso cuando ya no es emocionante.</p>
+            </div>
+
+            <section class="editorial-phrase reveal"><blockquote class="phrase-text">"La emoción no es propósito."</blockquote></section>
+
+            <div class="paragraph-group reveal">
+                <p>No creo que me falte talento.</p>
+                <p>Creo que me sobra curiosidad.</p>
+                <p>Y si no aprendo a dirigir esa curiosidad hacia un solo lugar, siempre voy a sentir que estoy empezando desde cero.</p>
+            </div>
+
+            <section class="editorial-phrase reveal"><blockquote class="phrase-text">"Esta vez quiero quedarme."</blockquote></section>
+
+            <div class="paragraph-group reveal">
+                <p>Así que hice un pequeño acuerdo conmigo.</p>
+                <p>Durante los próximos meses no voy a buscar la idea perfecta.</p>
+                <p>Voy a intentar construir una idea imperfecta durante suficiente tiempo como para descubrir si realmente valía la pena.</p>
+                <p>Si alguna vez vuelvo a querer abandonar,</p>
+                <p>voy a volver a leer esta nota.</p>
+                <p>Tal vez tú también la necesites algún día.</p>
+                <p><strong>Michel.</strong></p>
+            </div>
+
+            <hr class="divider">
+
+            <footer class="footer-note reveal">
+                <p>Si esta nota también habló de ti, escríbeme en Instagram.</p>
+                <p style="color: var(--muted-color);">No tengo todas las respuestas.</p>
+                <p style="color: var(--muted-color);">Solo estoy documentando el camino.</p>
+            </footer>
+
+            <div class="action-zone reveal">
+                <a href="#" id="instagramLink" class="btn-instagram" target="_blank" rel="noopener noreferrer">
+                    Volver a Instagram
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const INSTAGRAM_URL = "https://instagram.com/michelmirandamusic";
+        document.getElementById('instagramLink').href = INSTAGRAM_URL;
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById('readingProgress').style.width = (winScroll / height) * 100 + '%';
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: "0px 0px -20px 0px", threshold: 0.05 });
+
+            reveals.forEach(el => observer.observe(el));
+        });
+
+        const metaThemeColor = document.getElementById('theme-color-meta');
+        const updateThemeColor = () => {
+            metaThemeColor.setAttribute('content', window.matchMedia('(prefers-color-scheme: dark)').matches ? '#121212' : '#F7F5F2');
+        };
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateThemeColor);
+        updateThemeColor();
+    </script>
+</body>
+</html>
