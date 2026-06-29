@@ -4,142 +4,368 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Nota 001 — Michel Miranda</title>
-    
     <meta name="description" content="Una nota personal sobre el arte de quedarse, la curiosidad y la búsqueda de propósito.">
     <meta name="author" content="Michel Miranda">
-
     <meta property="og:title" content="Nota 001 — Michel Miranda">
     <meta property="og:description" content="Una nota íntima sobre empezar, abandonar y aprender a quedarse.">
-    
-    <meta name="theme-color" content="#ffffff" id="theme-color-meta">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='12' fill='%236F8B5E'/></svg>">
+    <meta name="theme-color" content="#0a0a0a">
 
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='14' fill='none' stroke='%23a8c5a0' stroke-width='8'/></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-color: #ffffff;
-            --text-color: #000000;
-            --accent-color: #6F8B5E;
-            --muted-color: #666666;
-            --line-color: rgba(0, 0, 0, 0.1);
-            --progress-bg: rgba(111, 139, 94, 0.1);
+            --bg: #0a0a0a;
+            --surface: #111111;
+            --text: #e8e4dc;
+            --text-muted: #7a7570;
+            --accent: #a8c5a0;
+            --accent-warm: #d4a96a;
+            --accent-glow: rgba(168, 197, 160, 0.12);
+            --line: rgba(232, 228, 220, 0.07);
             --font-serif: 'Cormorant Garamond', Georgia, serif;
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg);
+            color: var(--text);
             font-family: var(--font-sans);
             font-size: 17px;
-            line-height: 1.8;
-            letter-spacing: -0.011em;
+            line-height: 1.9;
+            letter-spacing: -0.01em;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            transition: background-color 0.8s ease, color 0.8s ease;
-            padding: 0 max(20px, env(safe-area-inset-right)) 0 max(20px, env(safe-area-inset-left));
+            padding: 0 max(24px, env(safe-area-inset-right)) 0 max(24px, env(safe-area-inset-left));
         }
 
-        .progress-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 2px;
-            background: var(--progress-bg); z-index: 9999;
-        }
-        .progress-bar { height: 100%; width: 0%; background: var(--accent-color); transition: width 0.1s ease-out; }
-        .container { max-width: 620px; margin: 0 auto; position: relative; }
+        /* ── Progress bar ── */
+        .progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 1px; z-index: 9999; background: transparent; }
+        .progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--accent-warm)); transition: width 0.1s ease-out; }
 
+        /* ── Layout ── */
+        .container { max-width: 600px; margin: 0 auto; position: relative; }
+
+        /* ── Hero ── */
         .hero {
-            height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: flex-start;
-            position: relative; padding-bottom: 8vh;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+            padding-bottom: 8vh;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--font-sans);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 32px;
+            animation: fadeIn 1.4s cubic-bezier(0.16,1,0.3,1) 0.1s both;
         }
 
         .hero-title {
             font-family: var(--font-serif);
-            font-size: clamp(32px, 6vw, 46px);
-            font-weight: 400; font-style: italic; line-height: 1.25;
-            animation: initialFadeUp 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+            font-size: clamp(36px, 6.5vw, 54px);
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.2;
+            color: var(--text);
+            animation: fadeUp 1.6s cubic-bezier(0.16,1,0.3,1) 0.25s both;
+        }
+
+        .hero-title em {
+            font-style: normal;
+            color: var(--accent);
         }
 
         .hero-meta {
-            margin-top: 40px; font-size: 13px; letter-spacing: 0.05em;
-            text-transform: uppercase; color: var(--muted-color); font-weight: 400;
-            animation: initialFadeIn 2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+            margin-top: 44px;
+            font-size: 12px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 400;
+            animation: fadeIn 2s cubic-bezier(0.16,1,0.3,1) 0.8s both;
+            display: flex;
+            gap: 20px;
         }
 
-        .hero-meta span { margin-right: 15px; position: relative; }
-        .hero-meta span:not(:last-child)::after { content: "·"; position: absolute; right: -10px; }
+        .hero-meta span { position: relative; }
+        .hero-meta span:not(:last-child)::after {
+            content: "";
+            position: absolute; right: -12px; top: 50%;
+            transform: translateY(-50%);
+            width: 3px; height: 3px;
+            background: var(--text-muted);
+            border-radius: 50%;
+        }
 
-        .scroll-indicator {
-            position: absolute; bottom: 6vh; left: 0; font-size: 13px;
-            color: var(--muted-color); letter-spacing: 0.02em; text-decoration: none;
-            animation: initialFadeIn 2s cubic-bezier(0.16, 1, 0.3, 1) 1.2s both;
+        .scroll-hint {
+            position: absolute; bottom: 6vh; left: 0;
+            display: flex; align-items: center; gap: 10px;
+            font-size: 12px; color: var(--text-muted);
+            letter-spacing: 0.05em; text-decoration: none;
+            animation: fadeIn 2s cubic-bezier(0.16,1,0.3,1) 1.2s both;
             transition: color 0.3s ease;
         }
-        .scroll-indicator:hover { color: var(--accent-color); }
+        .scroll-hint:hover { color: var(--accent); }
+        .scroll-hint svg { animation: bounce 2s ease-in-out infinite; }
+        @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(4px)} }
 
-        .journal-body { padding-bottom: 10vh; }
-        .paragraph-group { margin: 14vh 0; }
-        p { margin-bottom: 1.8em; font-weight: 300; opacity: 0.9; }
-        p strong { font-family: var(--font-serif); font-size: 22px; font-weight: 400; display: block; margin-top: 2.5em; font-style: italic; }
+        /* ── Body ── */
+        .journal-body { padding-bottom: 12vh; }
+        .paragraph-group { margin: 13vh 0; }
 
-        .editorial-phrase { min-height: 80vh; display: flex; align-items: center; justify-content: center; margin: 10vh 0; padding: 40px 0; }
-        .phrase-text { font-family: var(--font-serif); font-size: clamp(38px, 7vw, 56px); line-height: 1.2; font-weight: 400; color: var(--accent-color); text-align: left; width: 100%; font-style: italic; }
+        p {
+            margin-bottom: 1.7em;
+            font-weight: 300;
+            color: var(--text);
+            opacity: 0.88;
+        }
 
-        .divider { height: 1px; background-color: var(--line-color); width: 100%; margin-top: 15vh; margin-bottom: 8vh; border: none; }
-        .footer-note { font-weight: 300; margin-bottom: 2.5em; }
-        .footer-note p { margin-bottom: 0.6em; }
-        .action-zone { padding-bottom: 15vh; }
+        p em {
+            font-family: var(--font-serif);
+            font-size: 1.08em;
+            font-style: italic;
+            color: var(--accent-warm);
+            font-weight: 400;
+        }
+
+        p strong {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-weight: 400;
+            display: block;
+            margin-top: 2.5em;
+            font-style: italic;
+            color: var(--text);
+            opacity: 1;
+        }
+
+        /* ── Editorial phrases ── */
+        .editorial-phrase {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            margin: 8vh 0;
+            padding: 40px 0;
+            position: relative;
+        }
+
+        .editorial-phrase::before {
+            content: "";
+            position: absolute;
+            left: -60px; top: 50%;
+            transform: translateY(-50%);
+            width: 1px; height: 60px;
+            background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+            opacity: 0.5;
+        }
+
+        .phrase-text {
+            font-family: var(--font-serif);
+            font-size: clamp(34px, 6vw, 52px);
+            line-height: 1.25;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--accent);
+            width: 100%;
+        }
+
+        /* ── Divider ── */
+        .divider {
+            height: 1px;
+            border: none;
+            background: linear-gradient(to right, transparent, var(--line) 20%, var(--line) 80%, transparent);
+            margin: 14vh 0 8vh;
+        }
+
+        /* ── Footer note ── */
+        .footer-note { margin-bottom: 2.5em; }
+        .footer-note p { margin-bottom: 0.7em; font-size: 16px; }
+
+        /* ── Closing card ── */
+        .closing-card {
+            margin: 10vh 0 6vh;
+            padding: 48px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .closing-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), var(--accent-warm), transparent);
+        }
+
+        .closing-card::after {
+            content: "";
+            position: absolute;
+            bottom: -80px; right: -80px;
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .closing-label {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+
+        .closing-message {
+            font-family: var(--font-serif);
+            font-size: clamp(22px, 3.5vw, 30px);
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.5;
+            color: var(--text);
+            margin-bottom: 32px;
+        }
+
+        .closing-message strong {
+            font-style: normal;
+            font-weight: 400;
+            color: var(--accent-warm);
+            display: inline;
+            font-size: inherit;
+            margin: 0;
+        }
+
+        .closing-sub {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 44ch;
+            margin-bottom: 36px;
+            opacity: 1;
+        }
 
         .btn-instagram {
-            display: inline-flex; align-items: center; font-family: var(--font-sans);
-            font-size: 14px; font-weight: 400; color: var(--text-color); text-decoration: none;
-            padding: 12px 24px; border: 1px solid var(--line-color); border-radius: 24px;
-            background-color: transparent; transition: all 0.5s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-sans);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: var(--bg);
+            text-decoration: none;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+            border-radius: 2px;
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+            position: relative;
+            overflow: hidden;
         }
-        .btn-instagram:hover { background-color: var(--text-color); color: var(--bg-color); transform: translateY(-2px); }
 
+        .btn-instagram::before {
+            content: "";
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, var(--accent-warm), var(--accent));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .btn-instagram:hover::before { opacity: 1; }
+        .btn-instagram:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(168,197,160,0.25); }
+        .btn-instagram span { position: relative; z-index: 1; }
+
+        .signature {
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .signature-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+            flex-shrink: 0;
+        }
+
+        .signature-name {
+            font-family: var(--font-serif);
+            font-size: 18px;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
+        }
+
+        /* ── Reveal ── */
         .reveal {
-            opacity: 0; transform: translateY(30px);
-            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 1.3s cubic-bezier(0.16,1,0.3,1), transform 1.3s cubic-bezier(0.16,1,0.3,1);
             will-change: transform, opacity;
         }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        @keyframes initialFadeUp {
-            0% { opacity: 0; transform: translateY(20px); }
+        /* ── Animations ── */
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(24px); }
             100% { opacity: 1; transform: translateY(0); }
         }
-        @keyframes initialFadeIn {
+        @keyframes fadeIn {
             0% { opacity: 0; }
             100% { opacity: 1; }
         }
 
+        /* ── Mobile ── */
         @media (max-width: 768px) {
             body { font-size: 16px; }
             .paragraph-group { margin: 10vh 0; }
             .editorial-phrase { min-height: 60vh; }
+            .editorial-phrase::before { display: none; }
+            .closing-card { padding: 32px 28px; }
         }
     </style>
-    <noscript><style>.reveal { opacity: 1; transform: translateY(0); }</style></noscript>
+    <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 </head>
 <body>
 
     <div class="progress-container"><div class="progress-bar" id="readingProgress"></div></div>
 
     <div class="container">
+
         <section class="hero">
-            <h1 class="hero-title">Llevo años empezando cosas.<br>Esta es la primera que no voy a dejar.</h1>
+            <p class="hero-eyebrow">Nota 001</p>
+            <h1 class="hero-title">
+                Llevo años empezando cosas.<br>
+                Esta es la primera<br>
+                que no voy a <em>dejar</em>.
+            </h1>
             <div class="hero-meta">
-                <span>Nota 001</span><span>Michel Miranda</span><span>Lectura: 3 min</span>
+                <span>Michel Miranda</span>
+                <span>Lectura: 3 min</span>
             </div>
-            <a href="#content" class="scroll-indicator">↓ sigue leyendo</a>
+            <a href="#content" class="scroll-hint">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+                sigue leyendo
+            </a>
         </section>
 
         <main class="journal-body" id="content">
@@ -152,7 +378,7 @@
             </div>
 
             <section class="editorial-phrase reveal">
-                <blockquote class="phrase-text">"Cada vez que empezaba algo nuevo, sentía que esta vez sí era la correcta."</blockquote>
+                <blockquote class="phrase-text">“Cada vez que empezaba algo nuevo, sentía que esta vez sí era la correcta.”</blockquote>
             </section>
 
             <div class="paragraph-group reveal">
@@ -163,11 +389,11 @@
             </div>
 
             <section class="editorial-phrase reveal">
-                <blockquote class="phrase-text">"El talento no te lleva lejos si siempre estás en el kilómetro cero."</blockquote>
+                <blockquote class="phrase-text">“El talento no te lleva lejos si siempre estás en el kilómetro cero.”</blockquote>
             </section>
 
             <div class="paragraph-group reveal">
-                <p>Hay una frase que leí hace unos meses que me quedó dando vueltas: <em>“El maestro es simplemente el alumno que no se fue.”</em></p>
+                <p>Hay una frase que leí hace unos meses y que no me ha soltado: <em>“El maestro es simplemente el alumno que no se fue.”</em></p>
                 <p>No el más talentoso. No el más inteligente. El que se quedó.</p>
                 <p>Pensé en todos los proyectos que abandoné justo antes de que empezaran a ponerse interesantes. Justo cuando la curva de aprendizaje se volvía empinada. Justo cuando el trabajo dejaba de ser emocionante y se convertía en algo que requería disciplina real.</p>
                 <p>Abandonar ahí no es debilidad. Es humano. Pero si lo haces siempre, nunca cruzas al otro lado.</p>
@@ -175,7 +401,7 @@
             </div>
 
             <section class="editorial-phrase reveal">
-                <blockquote class="phrase-text">"Al otro lado del aburrimiento está la maestría."</blockquote>
+                <blockquote class="phrase-text">“Al otro lado del aburrimiento está la maestría.”</blockquote>
             </section>
 
             <div class="paragraph-group reveal">
@@ -187,7 +413,7 @@
             </div>
 
             <section class="editorial-phrase reveal">
-                <blockquote class="phrase-text">"Querer dejarlo no siempre significa que debes hacerlo."</blockquote>
+                <blockquote class="phrase-text">“Querer dejarlo no siempre significa que debes hacerlo.”</blockquote>
             </section>
 
             <div class="paragraph-group reveal">
@@ -197,22 +423,33 @@
                 <p>No porque el sufrimiento sea virtuoso. Sino porque esos momentos son exactamente donde los demás se rinden, y tú no.</p>
                 <p>Eso es lo que te separa.</p>
                 <p>No el talento. No la suerte. El simple hecho de no haberte ido cuando todo te dijo que lo hicieras.</p>
-                <p><strong>Michel.</strong></p>
+                <p><strong>Michel Miranda.</strong></p>
             </div>
 
             <hr class="divider">
 
-            <footer class="footer-note reveal">
-                <p>Si algo de esto rezonó contigo, me alegra que hayas llegado hasta acá.</p>
-                <p style="color: var(--muted-color);">Voy a seguir escribiendo estas notas.</p>
-                <p style="color: var(--muted-color);">Sin filtros. Sin guion. Solo lo que vivo y aprendo en el camino.</p>
-            </footer>
-
-            <div class="action-zone reveal">
+            <!-- CLOSING CARD -->
+            <div class="closing-card reveal">
+                <p class="closing-label">Una última cosa</p>
+                <p class="closing-message">
+                    Si llegaste hasta acá, ya demostraste algo.<br>
+                    La mayoría de la gente no termina lo que empieza.
+                    <strong>Tú acabas de hacerlo.</strong>
+                </p>
+                <p class="closing-sub">
+                    No sé en qué parte de tu camino estás. Pero si esta nota te dijo algo que necesitabas escuchar hoy, me alegra haber estado ahí.
+                    Escríbeme. Cuentáme qué estás construyendo. Me gustaría saber.
+                </p>
                 <a href="#" id="instagramLink" class="btn-instagram" target="_blank" rel="noopener noreferrer">
-                    Seguir en Instagram
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    <span>Escribirle a Michel</span>
                 </a>
+                <div class="signature">
+                    <div class="signature-dot"></div>
+                    <span class="signature-name">Michel Miranda</span>
+                </div>
             </div>
+
         </main>
     </div>
 
@@ -223,10 +460,10 @@
         window.addEventListener('scroll', () => {
             const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            document.getElementById('readingProgress').style.width = (winScroll / height) * 100 + '%';
+            if (height > 0) document.getElementById('readingProgress').style.width = (winScroll / height) * 100 + '%';
         });
 
-        document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener('DOMContentLoaded', () => {
             const reveals = document.querySelectorAll('.reveal');
             const observer = new IntersectionObserver((entries, obs) => {
                 entries.forEach(entry => {
@@ -235,12 +472,9 @@
                         obs.unobserve(entry.target);
                     }
                 });
-            }, { rootMargin: "0px 0px -20px 0px", threshold: 0.05 });
-
+            }, { rootMargin: '0px 0px -60px 0px', threshold: 0.05 });
             reveals.forEach(el => observer.observe(el));
         });
-
-        document.getElementById('theme-color-meta').setAttribute('content', '#ffffff');
     </script>
 </body>
 </html>
