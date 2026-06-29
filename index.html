@@ -8,23 +8,22 @@
     <meta name="author" content="Michel Miranda">
     <meta property="og:title" content="Nota 001 — Michel Miranda">
     <meta property="og:description" content="Una nota íntima sobre empezar, abandonar y aprender a quedarse.">
-    <meta name="theme-color" content="#0a0a0a">
-
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='14' fill='none' stroke='%23a8c5a0' stroke-width='8'/></svg>">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23C8F135'/><text y='.9em' font-size='80' x='10'>N</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg: #0a0a0a;
-            --surface: #111111;
-            --text: #e8e4dc;
-            --text-muted: #7a7570;
-            --accent: #a8c5a0;
-            --accent-warm: #d4a96a;
-            --accent-glow: rgba(168, 197, 160, 0.12);
-            --line: rgba(232, 228, 220, 0.07);
+            --bg: #ffffff;
+            --surface: #f5f5f3;
+            --text: #0d0d0d;
+            --text-muted: #999993;
+            --lime: #C8F135;
+            --lime-hover: #d6ff3d;
+            --lime-faint: rgba(200, 241, 53, 0.15);
+            --line: rgba(0,0,0,0.07);
             --font-serif: 'Cormorant Garamond', Georgia, serif;
             --font-sans: 'Inter', -apple-system, sans-serif;
         }
@@ -33,23 +32,30 @@
         html { scroll-behavior: smooth; }
 
         body {
-            background-color: var(--bg);
+            background: var(--bg);
             color: var(--text);
             font-family: var(--font-sans);
             font-size: 17px;
             line-height: 1.9;
-            letter-spacing: -0.01em;
+            letter-spacing: -0.011em;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             padding: 0 max(24px, env(safe-area-inset-right)) 0 max(24px, env(safe-area-inset-left));
         }
 
-        /* ── Progress bar ── */
-        .progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 1px; z-index: 9999; background: transparent; }
-        .progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--accent-warm)); transition: width 0.1s ease-out; }
+        /* ── Progress ── */
+        .progress-container {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 3px; z-index: 9999;
+        }
+        .progress-bar {
+            height: 100%; width: 0%;
+            background: var(--lime);
+            transition: width 0.1s ease-out;
+        }
 
         /* ── Layout ── */
-        .container { max-width: 600px; margin: 0 auto; position: relative; }
+        .container { max-width: 600px; margin: 0 auto; }
 
         /* ── Hero ── */
         .hero {
@@ -62,42 +68,50 @@
             padding-bottom: 8vh;
         }
 
-        .hero-eyebrow {
-            font-family: var(--font-sans);
+        .hero-tag {
             font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.18em;
+            font-weight: 600;
+            letter-spacing: 0.16em;
             text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 32px;
-            animation: fadeIn 1.4s cubic-bezier(0.16,1,0.3,1) 0.1s both;
+            background: var(--lime);
+            color: var(--text);
+            padding: 5px 12px;
+            margin-bottom: 36px;
+            animation: fadeIn 1.2s cubic-bezier(0.16,1,0.3,1) 0.1s both;
         }
 
         .hero-title {
             font-family: var(--font-serif);
-            font-size: clamp(36px, 6.5vw, 54px);
+            font-size: clamp(38px, 7vw, 60px);
             font-weight: 300;
             font-style: italic;
-            line-height: 1.2;
+            line-height: 1.15;
             color: var(--text);
-            animation: fadeUp 1.6s cubic-bezier(0.16,1,0.3,1) 0.25s both;
+            animation: fadeUp 1.6s cubic-bezier(0.16,1,0.3,1) 0.2s both;
         }
 
-        .hero-title em {
+        .hero-title .hl {
             font-style: normal;
-            color: var(--accent);
+            font-family: var(--font-sans);
+            font-weight: 700;
+            font-size: 0.72em;
+            background: var(--lime);
+            padding: 1px 8px;
+            letter-spacing: -0.01em;
+            vertical-align: baseline;
+            position: relative;
+            top: -3px;
         }
 
         .hero-meta {
-            margin-top: 44px;
-            font-size: 12px;
-            letter-spacing: 0.06em;
+            margin-top: 40px;
+            font-size: 11px;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
             color: var(--text-muted);
-            font-weight: 400;
-            animation: fadeIn 2s cubic-bezier(0.16,1,0.3,1) 0.8s both;
             display: flex;
             gap: 20px;
+            animation: fadeIn 2s cubic-bezier(0.16,1,0.3,1) 0.8s both;
         }
 
         .hero-meta span { position: relative; }
@@ -106,7 +120,7 @@
             position: absolute; right: -12px; top: 50%;
             transform: translateY(-50%);
             width: 3px; height: 3px;
-            background: var(--text-muted);
+            background: var(--lime);
             border-radius: 50%;
         }
 
@@ -114,15 +128,15 @@
             position: absolute; bottom: 6vh; left: 0;
             display: flex; align-items: center; gap: 10px;
             font-size: 12px; color: var(--text-muted);
-            letter-spacing: 0.05em; text-decoration: none;
+            letter-spacing: 0.04em; text-decoration: none;
             animation: fadeIn 2s cubic-bezier(0.16,1,0.3,1) 1.2s both;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
         }
-        .scroll-hint:hover { color: var(--accent); }
-        .scroll-hint svg { animation: bounce 2s ease-in-out infinite; }
-        @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(4px)} }
+        .scroll-hint:hover { color: var(--text); }
+        .scroll-hint svg { animation: bob 2.5s ease-in-out infinite; }
+        @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
 
-        /* ── Body ── */
+        /* ── Body text ── */
         .journal-body { padding-bottom: 12vh; }
         .paragraph-group { margin: 13vh 0; }
 
@@ -130,77 +144,70 @@
             margin-bottom: 1.7em;
             font-weight: 300;
             color: var(--text);
-            opacity: 0.88;
+            opacity: 0.9;
         }
 
         p em {
             font-family: var(--font-serif);
-            font-size: 1.08em;
             font-style: italic;
-            color: var(--accent-warm);
             font-weight: 400;
+            font-size: 1.05em;
+            background: var(--lime-faint);
+            padding: 1px 5px;
+            opacity: 1;
         }
 
         p strong {
             font-family: var(--font-serif);
-            font-size: 24px;
+            font-size: 23px;
             font-weight: 400;
+            font-style: italic;
             display: block;
             margin-top: 2.5em;
-            font-style: italic;
             color: var(--text);
             opacity: 1;
         }
 
-        /* ── Editorial phrases ── */
+        /* ── Phrases ── */
         .editorial-phrase {
-            min-height: 80vh;
+            min-height: 75vh;
             display: flex;
             align-items: center;
-            margin: 8vh 0;
+            margin: 6vh 0;
             padding: 40px 0;
-            position: relative;
-        }
-
-        .editorial-phrase::before {
-            content: "";
-            position: absolute;
-            left: -60px; top: 50%;
-            transform: translateY(-50%);
-            width: 1px; height: 60px;
-            background: linear-gradient(to bottom, transparent, var(--accent), transparent);
-            opacity: 0.5;
         }
 
         .phrase-text {
             font-family: var(--font-serif);
             font-size: clamp(34px, 6vw, 52px);
-            line-height: 1.25;
+            line-height: 1.2;
             font-weight: 300;
             font-style: italic;
-            color: var(--accent);
+            color: var(--text);
             width: 100%;
+        }
+
+        .phrase-text mark {
+            background: var(--lime);
+            color: var(--text);
+            font-style: normal;
+            padding: 2px 8px;
         }
 
         /* ── Divider ── */
         .divider {
-            height: 1px;
+            width: 40px;
+            height: 3px;
+            background: var(--lime);
             border: none;
-            background: linear-gradient(to right, transparent, var(--line) 20%, var(--line) 80%, transparent);
             margin: 14vh 0 8vh;
         }
 
-        /* ── Footer note ── */
-        .footer-note { margin-bottom: 2.5em; }
-        .footer-note p { margin-bottom: 0.7em; font-size: 16px; }
-
         /* ── Closing card ── */
         .closing-card {
-            margin: 10vh 0 6vh;
-            padding: 48px;
-            background: var(--surface);
-            border: 1px solid var(--line);
-            border-radius: 2px;
+            background: var(--text);
+            padding: 52px 48px;
+            margin: 8vh 0 6vh;
             position: relative;
             overflow: hidden;
         }
@@ -209,272 +216,279 @@
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), var(--accent-warm), transparent);
+            height: 3px;
+            background: var(--lime);
         }
 
         .closing-card::after {
-            content: "";
+            content: "N";
             position: absolute;
-            bottom: -80px; right: -80px;
-            width: 200px; height: 200px;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            bottom: -20px; right: 24px;
+            font-family: var(--font-serif);
+            font-size: 180px;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--lime);
+            opacity: 0.04;
+            line-height: 1;
             pointer-events: none;
+            user-select: none;
         }
 
         .closing-label {
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.15em;
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 24px;
+            background: var(--lime);
+            color: var(--text);
+            padding: 4px 10px;
+            margin-bottom: 32px;
         }
 
         .closing-message {
             font-family: var(--font-serif);
-            font-size: clamp(22px, 3.5vw, 30px);
+            font-size: clamp(24px, 4vw, 36px);
             font-weight: 300;
             font-style: italic;
-            line-height: 1.5;
-            color: var(--text);
-            margin-bottom: 32px;
+            line-height: 1.45;
+            color: #ffffff;
+            margin-bottom: 28px;
         }
 
         .closing-message strong {
-            font-style: normal;
-            font-weight: 400;
-            color: var(--accent-warm);
             display: inline;
-            font-size: inherit;
+            font-family: var(--font-sans);
+            font-style: normal;
+            font-weight: 700;
+            font-size: 0.8em;
+            color: var(--lime);
             margin: 0;
+            letter-spacing: -0.01em;
         }
 
         .closing-sub {
             font-size: 14px;
             font-weight: 300;
-            color: var(--text-muted);
-            line-height: 1.7;
-            max-width: 44ch;
-            margin-bottom: 36px;
-            opacity: 1;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.85;
+            max-width: 42ch;
+            margin-bottom: 44px;
         }
 
-        .btn-instagram {
+        .btn-cta {
             display: inline-flex;
             align-items: center;
             gap: 10px;
             font-family: var(--font-sans);
-            font-size: 13px;
-            font-weight: 500;
-            letter-spacing: 0.04em;
-            color: var(--bg);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text);
             text-decoration: none;
-            padding: 14px 28px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-warm));
-            border-radius: 2px;
-            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
-            position: relative;
-            overflow: hidden;
+            padding: 16px 36px;
+            background: var(--lime);
+            transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
         }
 
-        .btn-instagram::before {
-            content: "";
-            position: absolute; inset: 0;
-            background: linear-gradient(135deg, var(--accent-warm), var(--accent));
-            opacity: 0;
-            transition: opacity 0.4s ease;
+        .btn-cta:hover {
+            background: var(--lime-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(200,241,53,0.35);
         }
-        .btn-instagram:hover::before { opacity: 1; }
-        .btn-instagram:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(168,197,160,0.25); }
-        .btn-instagram span { position: relative; z-index: 1; }
 
         .signature {
-            margin-top: 48px;
-            padding-top: 32px;
-            border-top: 1px solid var(--line);
+            margin-top: 52px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(255,255,255,0.08);
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
         }
 
-        .signature-dot {
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+        .sig-mark {
+            width: 8px; height: 8px;
+            background: var(--lime);
             flex-shrink: 0;
         }
 
-        .signature-name {
+        .sig-name {
             font-family: var(--font-serif);
-            font-size: 18px;
+            font-size: 20px;
             font-style: italic;
             font-weight: 300;
-            color: var(--text-muted);
-            letter-spacing: 0.02em;
+            color: rgba(255,255,255,0.35);
         }
 
         /* ── Reveal ── */
         .reveal {
             opacity: 0;
             transform: translateY(28px);
-            transition: opacity 1.3s cubic-bezier(0.16,1,0.3,1), transform 1.3s cubic-bezier(0.16,1,0.3,1);
-            will-change: transform, opacity;
+            transition: opacity 1.3s cubic-bezier(0.16,1,0.3,1),
+                        transform 1.3s cubic-bezier(0.16,1,0.3,1);
         }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* ── Animations ── */
         @keyframes fadeUp {
-            0% { opacity: 0; transform: translateY(24px); }
-            100% { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(22px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
         @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+            from { opacity: 0; }
+            to   { opacity: 1; }
         }
 
         /* ── Mobile ── */
         @media (max-width: 768px) {
             body { font-size: 16px; }
             .paragraph-group { margin: 10vh 0; }
-            .editorial-phrase { min-height: 60vh; }
-            .editorial-phrase::before { display: none; }
-            .closing-card { padding: 32px 28px; }
+            .editorial-phrase { min-height: 55vh; }
+            .closing-card { padding: 36px 28px; }
         }
     </style>
-    <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+    <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 
-    <div class="progress-container"><div class="progress-bar" id="readingProgress"></div></div>
+<div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
 
-    <div class="container">
+<div class="container">
 
-        <section class="hero">
-            <p class="hero-eyebrow">Nota 001</p>
-            <h1 class="hero-title">
-                Llevo años empezando cosas.<br>
-                Esta es la primera<br>
-                que no voy a <em>dejar</em>.
-            </h1>
-            <div class="hero-meta">
-                <span>Michel Miranda</span>
-                <span>Lectura: 3 min</span>
-            </div>
-            <a href="#content" class="scroll-hint">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-                sigue leyendo
-            </a>
+    <section class="hero">
+        <p class="hero-tag">Nota 001</p>
+        <h1 class="hero-title">
+            Llevo años empezando cosas.<br>
+            Esta es la primera<br>
+            que no voy a <span class="hl">dejar</span>.
+        </h1>
+        <div class="hero-meta">
+            <span>Michel Miranda</span>
+            <span>Lectura: 3 min</span>
+        </div>
+        <a href="#content" class="scroll-hint">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+            sigue leyendo
+        </a>
+    </section>
+
+    <main class="journal-body" id="content">
+
+        <div class="paragraph-group reveal">
+            <p>Cuando tenía diecisiete años decidí que iba a ser músico.</p>
+            <p>Compré una guitarra, aprendí cuatro acordes, grabé demos en el baño con el teléfono apoyado en el espejo. Eso duró como cuatro meses.</p>
+            <p>Después fue el diseño. Después el e-commerce. Después la música otra vez, pero ahora con producción. Después una marca de joyería. Después otra tienda. Después, después, después.</p>
+            <p>No te estoy contando esto para quejarme. Te lo cuento porque probablemente tú también tienes una lista parecida.</p>
+        </div>
+
+        <section class="editorial-phrase reveal">
+            <blockquote class="phrase-text">
+                "Cada vez que empezaba algo nuevo, sentía que <mark>esta vez sí</mark> era la correcta."
+            </blockquote>
         </section>
 
-        <main class="journal-body" id="content">
+        <div class="paragraph-group reveal">
+            <p>Y lo curioso es que nunca era mentira. En el momento en que lo decía, lo creía de verdad.</p>
+            <p>El problema no era que mintiera. El problema era que confundía el entusiasmo del inicio con la certeza del camino.</p>
+            <p>El entusiasmo es una chispa. Aparece rápido, ilumina todo, te hace sentir que eres capaz de cualquier cosa. Pero las chispas no calientan una casa. Para eso necesitas leña, paciencia y estar dispuesto a avivar el fuego los días que casi se apaga.</p>
+            <p>Yo nunca aprendí a avivar el fuego. Cada vez que se enfriaba un poco, iba a buscar una chispa nueva.</p>
+        </div>
 
-            <div class="paragraph-group reveal">
-                <p>Cuando tenía diecisiete años decidí que iba a ser músico.</p>
-                <p>Compré una guitarra, aprendí cuatro acordes, grabé demos en el baño con el teléfono apoyado en el espejo. Eso duró como cuatro meses.</p>
-                <p>Después fue el diseño. Después el e-commerce. Después la música otra vez, pero ahora con producción. Después una marca de joyería. Después otra tienda. Después, después, después.</p>
-                <p>No te estoy contando esto para quejarme. Te lo cuento porque probablemente tú también tienes una lista parecida.</p>
+        <section class="editorial-phrase reveal">
+            <blockquote class="phrase-text">
+                "El talento no te lleva lejos si siempre estás en el <mark>kilómetro cero</mark>."
+            </blockquote>
+        </section>
+
+        <div class="paragraph-group reveal">
+            <p>Hay una frase que leí hace unos meses y que no me ha soltado: <em>"El maestro es simplemente el alumno que no se fue."</em></p>
+            <p>No el más talentoso. No el más inteligente. El que se quedó.</p>
+            <p>Pensé en todos los proyectos que abandoné justo antes de que empezaran a ponerse interesantes. Justo cuando la curva de aprendizaje se volvía empinada. Justo cuando el trabajo dejaba de ser emocionante y se convertía en algo que requería disciplina real.</p>
+            <p>Abandonar ahí no es debilidad. Es humano. Pero si lo haces siempre, nunca cruzas al otro lado.</p>
+            <p>Y el otro lado es donde pasan las cosas buenas.</p>
+        </div>
+
+        <section class="editorial-phrase reveal">
+            <blockquote class="phrase-text">
+                "Al otro lado del aburrimiento<br>está la <mark>maestría</mark>."
+            </blockquote>
+        </section>
+
+        <div class="paragraph-group reveal">
+            <p>Así que hice algo diferente esta vez.</p>
+            <p>En lugar de esperar a sentir la motivación, decidí actuar primero y dejar que la motivación me alcanzara en el camino. Porque la motivación no es el punto de partida. Es la consecuencia del movimiento.</p>
+            <p>Puse una regla sencilla: si quiero dejarlo, tengo que esperar 72 horas antes de tomar esa decisión. Solo 72 horas. En ese tiempo, sigo trabajando aunque no quiera.</p>
+            <p>Lo que descubrí es que el 90% de las veces que quería abandonar, era simplemente un momento difícil — no una señal real de que debía irme.</p>
+            <p>La diferencia entre los dos es enorme. Y solo la puedes ver si te quedas lo suficiente.</p>
+        </div>
+
+        <section class="editorial-phrase reveal">
+            <blockquote class="phrase-text">
+                "Querer dejarlo no siempre significa que <mark>debes</mark> hacerlo."
+            </blockquote>
+        </section>
+
+        <div class="paragraph-group reveal">
+            <p>No sé lo que estás construyendo tú.</p>
+            <p>Puede ser un negocio, una carrera, una relación, una versión mejor de ti mismo. No importa qué es. Lo que importa es que hoy, cuando sientas que ya no vale la pena, recuerdes esto:</p>
+            <p>La mayor parte del crecimiento sucede en los momentos en que menos ganas tienes de seguir.</p>
+            <p>No porque el sufrimiento sea virtuoso. Sino porque esos momentos son exactamente donde los demás se rinden — y tú no.</p>
+            <p>Eso es lo que te separa. No el talento. No la suerte. El simple hecho de no haberte ido cuando todo te dijo que lo hicieras.</p>
+            <p><strong>Michel Miranda.</strong></p>
+        </div>
+
+        <hr class="divider reveal">
+
+        <div class="closing-card reveal">
+            <p class="closing-label">Una última cosa</p>
+            <p class="closing-message">
+                Si llegaste hasta acá,<br>
+                ya demostraste algo.<br>
+                La mayoría no termina<br>
+                lo que empieza.<br>
+                <strong>Tú acabas de hacerlo.</strong>
+            </p>
+            <p class="closing-sub">
+                No sé en qué parte de tu camino estás. Pero si esta nota te dijo algo que necesitabas escuchar hoy, me alegra haber estado ahí. Escríbeme. Cuéntame qué estás construyendo. Me gustaría saber.
+            </p>
+            <a href="#" id="igLink" class="btn-cta" target="_blank" rel="noopener noreferrer">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+                Escribirle a Michel
+            </a>
+            <div class="signature">
+                <div class="sig-mark"></div>
+                <span class="sig-name">Michel Miranda</span>
             </div>
+        </div>
 
-            <section class="editorial-phrase reveal">
-                <blockquote class="phrase-text">“Cada vez que empezaba algo nuevo, sentía que esta vez sí era la correcta.”</blockquote>
-            </section>
+    </main>
+</div>
 
-            <div class="paragraph-group reveal">
-                <p>Y lo curioso es que nunca era mentira. En el momento en que lo decía, lo creía de verdad.</p>
-                <p>El problema no era que mintiera. El problema era que confundía el entusiasmo del inicio con la certeza del camino.</p>
-                <p>El entusiasmo es una chispa. Aparece rápido, ilumina todo, te hace sentir que eres capaz de cualquier cosa. Pero las chispas no calientan una casa. Para eso necesitas leña, paciencia y estar dispuesto a avivar el fuego los días que casi se apaga.</p>
-                <p>Yo nunca aprendí a avivar el fuego. Cada vez que se enfriaba un poco, iba a buscar una chispa nueva.</p>
-            </div>
+<script>
+    document.getElementById('igLink').href =
+        'https://www.instagram.com/jmmiranda_oficial?igsh=dm9xcWZjaDQ1cmx1&utm_source=qr';
 
-            <section class="editorial-phrase reveal">
-                <blockquote class="phrase-text">“El talento no te lleva lejos si siempre estás en el kilómetro cero.”</blockquote>
-            </section>
+    window.addEventListener('scroll', () => {
+        const s = document.documentElement.scrollTop || document.body.scrollTop;
+        const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        if (h > 0) document.getElementById('progressBar').style.width = (s / h * 100) + '%';
+    });
 
-            <div class="paragraph-group reveal">
-                <p>Hay una frase que leí hace unos meses y que no me ha soltado: <em>“El maestro es simplemente el alumno que no se fue.”</em></p>
-                <p>No el más talentoso. No el más inteligente. El que se quedó.</p>
-                <p>Pensé en todos los proyectos que abandoné justo antes de que empezaran a ponerse interesantes. Justo cuando la curva de aprendizaje se volvía empinada. Justo cuando el trabajo dejaba de ser emocionante y se convertía en algo que requería disciplina real.</p>
-                <p>Abandonar ahí no es debilidad. Es humano. Pero si lo haces siempre, nunca cruzas al otro lado.</p>
-                <p>Y el otro lado es donde pasan las cosas buenas.</p>
-            </div>
-
-            <section class="editorial-phrase reveal">
-                <blockquote class="phrase-text">“Al otro lado del aburrimiento está la maestría.”</blockquote>
-            </section>
-
-            <div class="paragraph-group reveal">
-                <p>Así que hice algo diferente esta vez.</p>
-                <p>En lugar de esperar a sentir la motivación, decidí actuar primero y dejar que la motivación me alcanzara en el camino. Porque la motivación no es el punto de partida. Es la consecuencia del movimiento.</p>
-                <p>Puse una regla sencilla: si quiero dejarlo, tengo que esperar 72 horas antes de tomar esa decisión. Solo 72 horas. En ese tiempo, sigo trabajando aunque no quiera.</p>
-                <p>Lo que descubrí es que el 90% de las veces que quería abandonar, era simplemente un momento difícil, no una señal real de que debía irme.</p>
-                <p>La diferencia entre los dos es enorme. Y solo la puedes ver si te quedas lo suficiente.</p>
-            </div>
-
-            <section class="editorial-phrase reveal">
-                <blockquote class="phrase-text">“Querer dejarlo no siempre significa que debes hacerlo.”</blockquote>
-            </section>
-
-            <div class="paragraph-group reveal">
-                <p>No sé lo que estás construyendo tú.</p>
-                <p>Puede ser un negocio, una carrera, una relación, una versión mejor de ti mismo. No importa qué es. Lo que importa es que hoy, cuando sientas que ya no vale la pena, recuerdes esto:</p>
-                <p>La mayor parte del crecimiento sucede en los momentos en que menos ganas tienes de seguir.</p>
-                <p>No porque el sufrimiento sea virtuoso. Sino porque esos momentos son exactamente donde los demás se rinden, y tú no.</p>
-                <p>Eso es lo que te separa.</p>
-                <p>No el talento. No la suerte. El simple hecho de no haberte ido cuando todo te dijo que lo hicieras.</p>
-                <p><strong>Michel Miranda.</strong></p>
-            </div>
-
-            <hr class="divider">
-
-            <!-- CLOSING CARD -->
-            <div class="closing-card reveal">
-                <p class="closing-label">Una última cosa</p>
-                <p class="closing-message">
-                    Si llegaste hasta acá, ya demostraste algo.<br>
-                    La mayoría de la gente no termina lo que empieza.
-                    <strong>Tú acabas de hacerlo.</strong>
-                </p>
-                <p class="closing-sub">
-                    No sé en qué parte de tu camino estás. Pero si esta nota te dijo algo que necesitabas escuchar hoy, me alegra haber estado ahí.
-                    Escríbeme. Cuentáme qué estás construyendo. Me gustaría saber.
-                </p>
-                <a href="#" id="instagramLink" class="btn-instagram" target="_blank" rel="noopener noreferrer">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                    <span>Escribirle a Michel</span>
-                </a>
-                <div class="signature">
-                    <div class="signature-dot"></div>
-                    <span class="signature-name">Michel Miranda</span>
-                </div>
-            </div>
-
-        </main>
-    </div>
-
-    <script>
-        const INSTAGRAM_URL = "https://www.instagram.com/jmmiranda_oficial?igsh=dm9xcWZjaDQ1cmx1&utm_source=qr";
-        document.getElementById('instagramLink').href = INSTAGRAM_URL;
-
-        window.addEventListener('scroll', () => {
-            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            if (height > 0) document.getElementById('readingProgress').style.width = (winScroll / height) * 100 + '%';
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const reveals = document.querySelectorAll('.reveal');
-            const observer = new IntersectionObserver((entries, obs) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        obs.unobserve(entry.target);
-                    }
-                });
-            }, { rootMargin: '0px 0px -60px 0px', threshold: 0.05 });
-            reveals.forEach(el => observer.observe(el));
-        });
-    </script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const obs = new IntersectionObserver((entries, o) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('active'); o.unobserve(e.target); }
+            });
+        }, { rootMargin: '0px 0px -60px 0px', threshold: 0.05 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    });
+</script>
 </body>
 </html>
